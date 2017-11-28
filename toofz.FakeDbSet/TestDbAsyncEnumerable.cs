@@ -9,8 +9,8 @@ namespace toofz
     {
         public TestDbAsyncEnumerable(Expression expression) : base(expression) { }
 
-        public IDbAsyncEnumerator<T> GetAsyncEnumerator() => new TestDbAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
-        IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator() => GetAsyncEnumerator();
+        IDbAsyncEnumerator<T> IDbAsyncEnumerable<T>.GetAsyncEnumerator() => new TestDbAsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
+        IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator() => ((IDbAsyncEnumerable<T>)this).GetAsyncEnumerator();
         IQueryProvider IQueryable.Provider => new TestDbAsyncQueryProvider<T>(this);
     }
 }

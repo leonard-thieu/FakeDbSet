@@ -20,10 +20,10 @@ namespace toofz
 
         private readonly IQueryable<TEntity> queryable;
 
+        IDbAsyncEnumerator<TEntity> IDbAsyncEnumerable<TEntity>.GetAsyncEnumerator() => new TestDbAsyncEnumerator<TEntity>(queryable.GetEnumerator());
         IQueryProvider IQueryable.Provider => new TestDbAsyncQueryProvider<TEntity>(queryable.Provider);
         Expression IQueryable.Expression => queryable.Expression;
         Type IQueryable.ElementType => queryable.ElementType;
         IEnumerator<TEntity> IEnumerable<TEntity>.GetEnumerator() => queryable.GetEnumerator();
-        IDbAsyncEnumerator<TEntity> IDbAsyncEnumerable<TEntity>.GetAsyncEnumerator() => new TestDbAsyncEnumerator<TEntity>(queryable.GetEnumerator());
     }
 }
