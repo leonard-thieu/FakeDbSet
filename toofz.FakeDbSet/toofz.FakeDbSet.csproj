@@ -14,7 +14,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Leonard Thieu</Authors>
     <Title>toofz FakeDbSet</Title>
     <Description>Fake DbSet implementation for testing with Entity Framework 6.</Description>
