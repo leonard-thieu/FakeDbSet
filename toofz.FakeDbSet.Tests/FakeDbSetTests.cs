@@ -17,7 +17,33 @@ namespace toofz.Tests
 
         private readonly FakeDbSet<object> dbSet;
 
-        public class Constructor
+        public class Constructor_Array_TEntity
+        {
+            [Fact]
+            public void NoParams_ReturnsInstance()
+            {
+                // Arrange -> Act
+                var dbSet = new FakeDbSet<object>();
+
+                // Assert
+                Assert.IsAssignableFrom<FakeDbSet<object>>(dbSet);
+            }
+
+            [Fact]
+            public void ReturnsInstance()
+            {
+                // Arrange
+                var item = new object();
+
+                // Act
+                var dbSet = new FakeDbSet<object>(item);
+
+                // Assert
+                Assert.IsAssignableFrom<FakeDbSet<object>>(dbSet);
+            }
+        }
+
+        public class Constructor_IEnumerable_TEntity
         {
             [Fact]
             public void DataIsNull_ThrowsArgumentNullException()
@@ -39,10 +65,10 @@ namespace toofz.Tests
                 var data = new List<object>();
 
                 // Act
-                var mockDbSet = new FakeDbSet<object>(data);
+                var dbSet = new FakeDbSet<object>(data);
 
                 // Assert
-                Assert.IsAssignableFrom<FakeDbSet<object>>(mockDbSet);
+                Assert.IsAssignableFrom<FakeDbSet<object>>(dbSet);
             }
         }
 

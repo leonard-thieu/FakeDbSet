@@ -10,6 +10,8 @@ namespace toofz
     public class FakeDbSet<TEntity> : DbSet<TEntity>, IDbAsyncEnumerable<TEntity>, IQueryable<TEntity>
         where TEntity : class
     {
+        public FakeDbSet(params TEntity[] data) : this((IEnumerable<TEntity>)data) { }
+
         public FakeDbSet(IEnumerable<TEntity> data)
         {
             if (data == null)
