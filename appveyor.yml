@@ -18,7 +18,9 @@ assembly_info:
   patch: true
   file: AssemblyInfo.cs
   assembly_version: $(appveyor_build_version)
-
+  
+init:
+  - git config --global core.autocrlf input
 install:
   - nuget update -Self
   - git clone https://github.com/leonard-thieu/toofz-build.git Scripts
