@@ -7,21 +7,40 @@ using System.Linq.Expressions;
 
 namespace toofz
 {
+    /// <summary>
+    /// In memory implementation of <see cref="DbSet{TEntity}"/> suitable for testing.
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public class FakeDbSet<TEntity> : DbSet<TEntity>, IDbAsyncEnumerable<TEntity>, IQueryable<TEntity>
         where TEntity : class
     {
-        public FakeDbSet(params TEntity[] data) : this((IEnumerable<TEntity>)data) { }
+        /// <summary>
+        /// Initializes an instance of the <see cref="FakeDbSet{TEntity}"/> class.
+        /// </summary>
+        /// <param name="entities">
+        /// The collection of entities to initialize the set with.
+        /// </param>
+        public FakeDbSet(params TEntity[] entities) : this((IEnumerable<TEntity>)entities) { }
 
-        public FakeDbSet(IEnumerable<TEntity> data)
+        /// <summary>
+        /// Initializes an instance of the <see cref="FakeDbSet{TEntity}"/> class.
+        /// </summary>
+        /// <param name="entities">
+        /// The collection of entities to initialize the set with.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="entities"/> is null.
+        /// </exception>
+        public FakeDbSet(IEnumerable<TEntity> entities)
         {
-            if (data == null)
-                throw new ArgumentNullException(nameof(data));
+            if (entities == null)
+                throw new ArgumentNullException(nameof(entities));
 
-            queryable = data.AsQueryable();
+            queryable = entities.AsQueryable();
         }
 
         private readonly IQueryable<TEntity> queryable;
-
+        
         IDbAsyncEnumerator<TEntity> IDbAsyncEnumerable<TEntity>.GetAsyncEnumerator() => new TestDbAsyncEnumerator<TEntity>(queryable.GetEnumerator());
         IQueryProvider IQueryable.Provider => new TestDbAsyncQueryProvider<TEntity>(queryable.Provider);
         Expression IQueryable.Expression => queryable.Expression;
