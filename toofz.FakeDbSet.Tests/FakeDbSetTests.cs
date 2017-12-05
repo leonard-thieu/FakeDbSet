@@ -17,7 +17,7 @@ namespace toofz.Tests
 
         private readonly FakeDbSet<object> dbSet;
 
-        public class Constructor_Array_TEntity
+        public class Constructor_Params_TEntity
         {
             [Fact]
             public void NoParams_ReturnsInstance()
@@ -81,7 +81,7 @@ namespace toofz.Tests
 
             private readonly IDbAsyncEnumerable<object> dbAsyncEnumerable;
 
-            public class IDbAsyncEnumerable_TEntity_GetAsyncEnumeratorMethod : IDbAsyncEnumerable_TEntity_Tests
+            public class GetAsyncEnumeratorMethod : IDbAsyncEnumerable_TEntity_Tests
             {
                 [Fact]
                 public void ReturnsAsyncEnumerator()

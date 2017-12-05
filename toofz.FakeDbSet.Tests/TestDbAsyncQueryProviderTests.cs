@@ -49,7 +49,7 @@ namespace toofz.Tests
             }
         }
 
-        public class CreateQueryMethod_TElement_Method : TestDbAsyncQueryProviderTests
+        public class CreateQuery_TElement_Method : TestDbAsyncQueryProviderTests
         {
             [Fact]
             public void ReturnsQuery()
@@ -82,7 +82,7 @@ namespace toofz.Tests
             }
         }
 
-        public class ExecuteMethod_TResult_Method : TestDbAsyncQueryProviderTests
+        public class Execute_TResult_Method : TestDbAsyncQueryProviderTests
         {
             [Fact]
             public void ReturnsResult()
@@ -117,7 +117,7 @@ namespace toofz.Tests
             }
         }
 
-        public class ExecuteAsyncMethod_TResult_Method : TestDbAsyncQueryProviderTests
+        public class ExecuteAsync_TResult_Method : TestDbAsyncQueryProviderTests
         {
             [Fact]
             public async Task ReturnsResult()
